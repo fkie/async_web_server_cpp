@@ -2,6 +2,16 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* New maintainer: Timo Röhling
+* Merge outstanding pull requests
+  GT-RAIL#14: Fix compatibility issue with Apache2 websocket proxy
+  GT-RAIL#16: Fix C++ include path for unit tests (obsolete)
+  GT-RAIL#19: Fix Python 3 compatibility for unit tests
+* Modernize CMakeLists.txt
+* Auto-detect MIME types from file extensions
+
 0.0.3 (2015-08-18)
 ------------------
 * Merge pull request #6 from mitchellwills/develop
