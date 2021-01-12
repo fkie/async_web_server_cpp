@@ -11,18 +11,16 @@ namespace async_web_server_cpp
  */
 struct HttpHeader
 {
-  HttpHeader()
-  {
-  }
+    HttpHeader() {}
 
-  HttpHeader(std::string name, std::string value) : name(name), value(value)
-  {
-  }
+    HttpHeader(std::string name, std::string value) : name(name), value(value)
+    {
+    }
 
-  std::string name;
-  std::string value;
+    std::string name;
+    std::string value;
 };
 
-}
+}  // namespace async_web_server_cpp
 
 #endif
