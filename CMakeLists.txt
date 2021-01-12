@@ -5,8 +5,8 @@ project(async_web_server_cpp VERSION 0.1.0 LANGUAGES CXX)
 find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
-find_package(Boost REQUIRED COMPONENTS filesystem regex system thread)
-find_package(OpenSSL)
+find_package(Boost REQUIRED COMPONENTS filesystem regex thread)
+find_package(OpenSSL REQUIRED)
 
 if(CATKIN_ENABLE_TESTING)
     find_package(catkin REQUIRED COMPONENTS roslib rospy)
@@ -27,13 +27,6 @@ catkin_package(
 ## Build ##
 ###########
 
-include_directories(
-    include
-    ${Boost_INCLUDE_DIRS}
-    ${OPENSSL_INCLUDE_DIRS}
-    ${catkin_INCLUDE_DIRS}
-)
-
 add_library(${PROJECT_NAME}
     src/http_connection.cpp
     src/http_reply.cpp
@@ -46,12 +39,18 @@ add_library(${PROJECT_NAME}
     src/websocket_request_handler.cpp
 )
 
+target_include_directories(${PROJECT_NAME}
+    PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        $<INSTALL_INTERFACE:include>
+)
+
 target_link_libraries(${PROJECT_NAME}
     PUBLIC
-        ${Boost_LIBRARIES}
+        Boost::boost Boost::filesystem Boost::thread
     PRIVATE
-        ${OPENSSL_LIBRARIES}
-        ${catkin_LIBRARIES}
+        Boost::regex
+        OpenSSL::Crypto
 )
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
