@@ -21,7 +21,7 @@ namespace async_web_server_cpp
 namespace status_strings
 {
 
-const std::string switching_protocols = "HTTP/1.0 101 Switching Protocols\r\n";
+const std::string switching_protocols = "HTTP/1.1 101 Switching Protocols\r\n";
 const std::string ok = "HTTP/1.0 200 OK\r\n";
 const std::string created = "HTTP/1.0 201 Created\r\n";
 const std::string accepted = "HTTP/1.0 202 Accepted\r\n";
