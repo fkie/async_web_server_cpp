@@ -10,6 +10,7 @@
 
 #include "async_web_server_cpp/http_reply.hpp"
 
+#include <boost/algorithm/string.hpp>
 #include <boost/lexical_cast.hpp>
 
 #include <fstream>
@@ -252,6 +253,37 @@ FileHttpRequestHandler::FileHttpRequestHandler(
 {
 }
 
+static bool hasContentType(const std::vector<HttpHeader>& headers)
+{
+    for (const auto& h : headers)
+    {
+        if (boost::iequals(h.name, "content-type"))
+            return true;
+    }
+    return false;
+}
+
+static std::string sniffContentType(const std::string& filename)
+{
+    if (boost::algorithm::ends_with(filename, ".js"))
+        return "application/javascript";
+    if (boost::algorithm::ends_with(filename, ".htm"))
+        return "text/html";
+    if (boost::algorithm::ends_with(filename, ".html"))
+        return "text/html";
+    if (boost::algorithm::ends_with(filename, ".css"))
+        return "text/css";
+    if (boost::algorithm::ends_with(filename, ".png"))
+        return "image/png";
+    if (boost::algorithm::ends_with(filename, ".jpg"))
+        return "image/jpeg";
+    if (boost::algorithm::ends_with(filename, ".jpeg"))
+        return "image/jpeg";
+    if (boost::algorithm::ends_with(filename, ".gif"))
+        return "image/gif";
+    return "application/octet-stream";
+}
+
 static bool serveFromFile(HttpReply::status_type status,
                           const std::string& filename,
                           const std::vector<HttpHeader>& headers,
@@ -264,6 +296,8 @@ static bool serveFromFile(HttpReply::status_type status,
 
     ReplyBuilder reply_builder_(status);
     reply_builder_.headers(headers);
+    if (!hasContentType(headers))
+        reply_builder_.header("Content-Type", sniffContentType(filename));
     reply_builder_.header("Content-Length",
                           boost::lexical_cast<std::string>(content.size()));
     reply_builder_.write(connection);
