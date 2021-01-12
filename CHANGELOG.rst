@@ -2,8 +2,8 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.1 (2021-01-12)
+------------------
 * New maintainer: Timo Röhling
 * Merge outstanding pull requests
   GT-RAIL#14: Fix compatibility issue with Apache2 websocket proxy
