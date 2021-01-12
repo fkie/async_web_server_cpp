@@ -1,12 +1,17 @@
 cmake_minimum_required(VERSION 3.10.2)
-project(async_web_server_cpp)
+project(async_web_server_cpp VERSION 0.1.0 LANGUAGES CXX)
 
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED)
 
 ## System dependencies are found with CMake's conventions
-find_package(Boost REQUIRED COMPONENTS thread system regex filesystem)
+find_package(Boost REQUIRED COMPONENTS filesystem regex system thread)
 find_package(OpenSSL)
+
+if(CATKIN_ENABLE_TESTING)
+    find_package(catkin REQUIRED COMPONENTS roslib rospy)
+    find_package(rostest REQUIRED)
+endif()
 
 ###################################################
 ## Declare things to be passed to other projects ##
@@ -15,7 +20,7 @@ find_package(OpenSSL)
 catkin_package(
     INCLUDE_DIRS include
     LIBRARIES ${PROJECT_NAME}
-    DEPENDS Boost OpenSSL
+    DEPENDS Boost
 )
 
 ###########
@@ -26,28 +31,36 @@ include_directories(
     include
     ${Boost_INCLUDE_DIRS}
     ${OPENSSL_INCLUDE_DIRS}
+    ${catkin_INCLUDE_DIRS}
 )
 
 add_library(${PROJECT_NAME}
+    src/http_connection.cpp
+    src/http_reply.cpp
+    src/http_request.cpp
+    src/http_request_handler.cpp
+    src/http_request_parser.cpp
     src/http_server.cpp
-    src/http_connection.cpp src/http_request_parser.cpp
-    src/http_reply.cpp src/http_request_handler.cpp
-    src/websocket_connection.cpp src/websocket_request_handler.cpp
-    src/websocket_message.cpp src/http_request.cpp)
+    src/websocket_connection.cpp
+    src/websocket_message.cpp
+    src/websocket_request_handler.cpp
+)
 
 target_link_libraries(${PROJECT_NAME}
-    ${OPENSSL_LIBRARIES}
-    ${Boost_LIBRARIES}
-    ${catkin_LIBRARIES}
+    PUBLIC
+        ${Boost_LIBRARIES}
+    PRIVATE
+        ${OPENSSL_LIBRARIES}
+        ${catkin_LIBRARIES}
 )
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 
 ###########
 # Testing #
 ###########
 
 if(CATKIN_ENABLE_TESTING)
-    find_package(catkin REQUIRED rospy roslib)
-    find_package(rostest)
     add_subdirectory(test)
 endif()
 
