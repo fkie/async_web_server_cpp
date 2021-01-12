@@ -2,8 +2,8 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.2 (2021-01-12)
+------------------
 * Fix integer comparisons
 * Use HTTP/1.1 reply for WebSockets protocol upgrade
 * Contributors: Timo Röhling
