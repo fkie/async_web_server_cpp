@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 
-import http.client as httplib
+import sys
+if sys.version_info > (3,):
+    import http.client as httplib
+else:
+    import httplib
 import unittest
 import time
 
@@ -50,18 +54,18 @@ class TestSimpleHttpRequests(unittest.TestCase):
         self.assertEqual(b"A RESPONSE", response.read())
 
     def test_http_echo1(self):
-        test_content = "hello HELLO"*1000 # make sure to exceed MTU
+        test_content = b"hello HELLO"*1000 # make sure to exceed MTU
         self.conn.request("GET", "/http_body_echo", test_content)
         response = self.conn.getresponse()
         self.assertEqual(200, response.status)
-        self.assertEqual(test_content.encode(), response.read())
+        self.assertEqual(test_content, response.read())
 
     def test_http_echo2(self):
-        test_content = "THIS is A test"*1000 # make sure to exceed MTU
+        test_content = b"THIS is A test"*1000 # make sure to exceed MTU
         self.conn.request("POST", "/http_body_echo", test_content)
         response = self.conn.getresponse()
         self.assertEqual(200, response.status)
-        self.assertEqual(test_content.encode(), response.read())
+        self.assertEqual(test_content, response.read())
 
     def test_http_path_echo(self):
         self.conn.request("GET", "/http_path_echo/this_is_a_test")

@@ -2,9 +2,21 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.0.0 (2019-09-19)
+1.0.2 (2021-01-12)
 ------------------
-* Port to ROS 2
+* Fix integer comparisons
+* Use HTTP/1.1 reply for WebSockets protocol upgrade
+* Contributors: Timo Röhling
+
+1.0.1 (2021-01-12)
+------------------
+* New maintainer: Timo Röhling
+* Merge outstanding pull requests
+  GT-RAIL#14: Fix compatibility issue with Apache2 websocket proxy
+  GT-RAIL#16: Fix C++ include path for unit tests (obsolete)
+  GT-RAIL#19: Fix Python 3 compatibility for unit tests
+* Modernize CMakeLists.txt
+* Auto-detect MIME types from file extensions
 
 0.0.3 (2015-08-18)
 ------------------
