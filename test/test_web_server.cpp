@@ -99,20 +99,15 @@ int main(int argc, char** argv)
 
     auto test_dir = std::string(ASYNC_WEB_SERVER_CPP_TEST_DIR);
     handler_group.addHandlerForPath(
-        "/test_files/.+",
-        HttpReply::from_filesystem(
-            HttpReply::ok, "/test_files/",
-            test_dir, false));
+        "/test_files/.+", HttpReply::from_filesystem(
+                              HttpReply::ok, "/test_files/", test_dir, false));
     handler_group.addHandlerForPath(
         "/test_files_with_dir/.+",
-        HttpReply::from_filesystem(
-            HttpReply::ok, "/test_files_with_dir/",
-            test_dir, true));
+        HttpReply::from_filesystem(HttpReply::ok, "/test_files_with_dir/",
+                                   test_dir, true));
     handler_group.addHandlerForPath(
-        "/test_file",
-        HttpReply::from_file(HttpReply::ok, "text/html",
-                             test_dir
-                                 + "/test.html"));
+        "/test_file", HttpReply::from_file(HttpReply::ok, "text/html",
+                                           test_dir + "/test.html"));
 
     HttpServer server("0.0.0.0", "9849", handler_group, 1);
 

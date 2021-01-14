@@ -116,8 +116,8 @@ public:
     void write(HttpConnectionPtr connection);
 
 private:
-  HttpReply::status_type status_;
-  std::shared_ptr<std::vector<HttpHeader> > headers_;
+    HttpReply::status_type status_;
+    std::shared_ptr<std::vector<HttpHeader>> headers_;
 };
 
 /**
