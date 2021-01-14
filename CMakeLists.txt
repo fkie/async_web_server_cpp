@@ -39,6 +39,12 @@ target_link_libraries(${PROJECT_NAME}
 
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 
+# Increase SOVERSION with each breaking ABI change
+set_target_properties(${PROJECT_NAME} PROPERTIES
+    VERSION ${PROJECT_VERSION}
+    SOVERSION 1
+)
+
 ###########
 # Testing #
 ###########
