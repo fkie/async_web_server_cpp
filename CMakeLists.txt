@@ -51,17 +51,15 @@ endif()
 ## Declare things to be passed to other projects ##
 ###################################################
 
-ament_export_dependencies(OpenSSL)
-ament_export_include_directories(include ${Boost_INCLUDE_DIRS})
-ament_export_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
-
+ament_export_targets(${PROJECT_NAME}Targets HAS_LIBRARY_TARGET)
+ament_package(CONFIG_EXTRAS find_dependencies.cmake.in)
 
 #############
 ## Install ##
 #############
 
 ## Mark executables and/or libraries for installation
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}Targets
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION bin
