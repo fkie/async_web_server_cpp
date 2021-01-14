@@ -2,8 +2,8 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.0 (2021-01-14)
+------------------
 * New ROS 2 port
   - ROS 2 releases will have version numbers 2.x
   - ROS 1 releases will continue with version numbers 1.x
