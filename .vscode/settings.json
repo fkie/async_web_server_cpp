@@ -1,8 +1,0 @@
-{
-    "ros.distro": "noetic",
-    "python.autoComplete.extraPaths": [
-        "E:/webpage_ws/devel\\lib/site-packages",
-        "c:\\opt\\ros\\noetic\\x64\\lib/site-packages",
-        "C:\\opt\\ros\\noetic\\x64\\Lib\\site-packages"
-    ]
-}
