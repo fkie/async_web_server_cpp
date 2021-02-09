@@ -8,7 +8,10 @@
 #include <boost/noncopyable.hpp>
 #include <boost/regex.hpp>
 #include <boost/shared_ptr.hpp>
-
+#if defined(_MSC_VER)
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
+#endif
 namespace async_web_server_cpp
 {
 

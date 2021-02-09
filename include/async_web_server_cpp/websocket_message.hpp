@@ -17,6 +17,9 @@ class WebsocketMessage;
 class WebsocketFrame
 {
 public:
+#ifdef _MSC_VER
+#pragma pack(push,1)
+#endif
     struct Header
     {
         enum opcode
@@ -35,7 +38,14 @@ public:
 
         unsigned int len : 7;
         bool mask : 1;
-    } __attribute__((__packed__));
+    }
+#ifdef __GNUC__
+				__attribute__ ((packed))
+#endif
+				data;
+#ifdef _MSC_VER
+#pragma pack(pop)
+#endif
     union
     {
         Header header;
