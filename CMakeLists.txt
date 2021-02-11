@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(async_web_server_cpp VERSION 0.1.0 LANGUAGES CXX)
 
-if(MSVC)
-    add_definitions(-D_WIN32_WINNT=0x0A00)
-endif()
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED)
 
@@ -56,6 +53,10 @@ target_link_libraries(${PROJECT_NAME}
         OpenSSL::Crypto
 )
 
+target_compile_definitions(${PROJECT_NAME}
+    PUBLIC
+        $<$<CXX_COMPILER_ID:MSVC>:-D_WIN32_WINNT=0x0A00>
+)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 
 ###########
