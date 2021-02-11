@@ -37,6 +37,10 @@ target_link_libraries(${PROJECT_NAME}
         OpenSSL::Crypto
 )
 
+target_compile_definitions(${PROJECT_NAME}
+    PUBLIC
+        $<$<CXX_COMPILER_ID:MSVC>:-D_WIN32_WINNT=0x0A00>
+)
 target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_11)
 
 # Increase SOVERSION with each breaking ABI change
