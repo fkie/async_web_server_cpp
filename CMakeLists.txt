@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10.2)
-project(async_web_server_cpp VERSION 0.1.0 LANGUAGES CXX)
+project(async_web_server_cpp VERSION 1.0.2 LANGUAGES CXX)
 
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED)
