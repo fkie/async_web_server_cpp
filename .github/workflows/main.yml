@@ -8,6 +8,7 @@ jobs:
       matrix:
         env:
           - {ROS_DISTRO: foxy}
+          - {ROS_DISTRO: rolling}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
