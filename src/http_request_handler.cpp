@@ -9,6 +9,11 @@
 #include <boost/regex.hpp>
 #include <boost/shared_ptr.hpp>
 
+#if defined(_MSC_VER)
+#    include <BaseTsd.h>
+using ssize_t = SSIZE_T;
+#endif
+
 namespace async_web_server_cpp
 {
 

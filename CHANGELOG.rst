@@ -2,6 +2,11 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add Windows 10 compatibility (`#1 <https://github.com/fkie/async_web_server_cpp/issues/1>`_)
+* Contributors: Pranav Dhulipala, Timo Röhling
+
 1.0.2 (2021-01-12)
 ------------------
 * Fix integer comparisons
