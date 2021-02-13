@@ -2,8 +2,8 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.3 (2021-02-13)
+------------------
 * Add Windows 10 compatibility (`#1 <https://github.com/fkie/async_web_server_cpp/issues/1>`_)
 * Contributors: Pranav Dhulipala, Timo Röhling
 
