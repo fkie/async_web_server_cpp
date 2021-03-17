@@ -7,13 +7,15 @@
 #include <boost/tuple/tuple.hpp>
 
 #if defined(_MSC_VER)
-#    define PACKED_STRUCT(name) \
-        __pragma(pack(push, 1)) struct name __pragma(pack(pop))
+#    define PACKED_STRUCT_BEGIN(name) __pragma(pack(push, 1)) struct name
+#    define PACKED_STRUCT_END         __pragma(pack(pop))
 #elif defined(__GNUC__)
-#    define PACKED_STRUCT(name) struct __attribute__((packed)) name
+#    define PACKED_STRUCT_BEGIN(name) struct __attribute__((packed)) name
+#    define PACKED_STRUCT_END
 #else
-#    warning I don't know how to create a packed struct with your compiler
-#    define PACKED_STRUCT(name) struct name
+#    warning I do not know how to create a packed struct with your compiler
+#    define PACKED_STRUCT_BEGIN(name) struct name
+#    define PACKED_STRUCT_END
 #endif
 
 namespace async_web_server_cpp
@@ -27,7 +29,7 @@ class WebsocketMessage;
 class WebsocketFrame
 {
 public:
-    PACKED_STRUCT(Header)
+    PACKED_STRUCT_BEGIN(Header)
     {
         enum opcode
         {
@@ -46,6 +48,7 @@ public:
         unsigned char len : 7;
         bool mask : 1;
     };
+    PACKED_STRUCT_END
     static_assert(sizeof(Header) == 2,
                   "the Header struct is not properly packed");
     union
