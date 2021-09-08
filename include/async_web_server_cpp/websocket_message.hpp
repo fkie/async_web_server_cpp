@@ -12,7 +12,7 @@
 #elif defined(__GNUC__)
 #    define PACKED_STRUCT(name) struct __attribute__((packed)) name
 #else
-#    warning I don't know how to create a packed struct with your compiler
+#    warning I don''t know how to create a packed struct with your compiler
 #    define PACKED_STRUCT(name) struct name
 #endif
 
