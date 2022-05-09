@@ -3,7 +3,7 @@
 #include "async_web_server_cpp/http_connection.hpp"
 #include "async_web_server_cpp/http_reply.hpp"
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/enable_shared_from_this.hpp>
 #include <boost/noncopyable.hpp>
 #include <boost/regex.hpp>
@@ -119,7 +119,7 @@ public:
         {
             connection_->async_read(
                 boost::bind(&BodyCollectingConnection::static_handle_read,
-                            shared_from_this(), _1, _2));
+                            shared_from_this(), boost::placeholders::_1, boost::placeholders::_2));
         }
     }
 
