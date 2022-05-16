@@ -1,6 +1,6 @@
 #include "async_web_server_cpp/http_reply.hpp"
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/make_shared.hpp>
 
 namespace async_web_server_cpp
@@ -21,7 +21,7 @@ boost::asio::ip::tcp::socket& HttpConnection::socket()
 void HttpConnection::start()
 {
     async_read(
-        boost::bind(&HttpConnection::handle_read, shared_from_this(), _1, _2));
+        boost::bind(&HttpConnection::handle_read, shared_from_this(), boost::placeholders::_1, boost::placeholders::_2));
 }
 
 void HttpConnection::handle_read(const char* begin, const char* end)
@@ -52,7 +52,7 @@ void HttpConnection::handle_read(const char* begin, const char* end)
     else
     {
         async_read(boost::bind(&HttpConnection::handle_read, shared_from_this(),
-                               _1, _2));
+                               boost::placeholders::_1, boost::placeholders::_2));
     }
 }
 

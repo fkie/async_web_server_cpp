@@ -1,6 +1,6 @@
 #include "async_web_server_cpp/websocket_connection.hpp"
 
-#include <boost/bind.hpp>
+#include <boost/bind/bind.hpp>
 #include <boost/make_shared.hpp>
 
 #include <limits>
@@ -89,7 +89,7 @@ void WebsocketConnection::handle_read(const char* begin, const char* end)
     }
     WebsocketConnectionWeakPtr this_weak(shared_from_this());
     connection_->async_read(boost::bind(
-        &WebsocketConnection::static_handle_read, this_weak, _1, _2));
+        &WebsocketConnection::static_handle_read, this_weak, boost::placeholders::_1, boost::placeholders::_2));
 }
 
 }  // namespace async_web_server_cpp
