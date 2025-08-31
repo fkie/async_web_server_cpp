@@ -360,9 +360,9 @@ bool FilesystemHttpRequestHandler::operator()(
                         if (boost::filesystem::is_directory(itr->status()))
                         {
                             content << "<a href=\""
-                                    << itr->path().leaf().generic_string()
+                                    << itr->path().filename().generic_string()
                                     << "/\">";
-                            content << itr->path().leaf().generic_string()
+                            content << itr->path().filename().generic_string()
                                     << "/";
                             content << "</a>";
                         }
@@ -370,9 +370,9 @@ bool FilesystemHttpRequestHandler::operator()(
                                      itr->status()))
                         {
                             content << "<a href=\""
-                                    << itr->path().leaf().generic_string()
+                                    << itr->path().filename().generic_string()
                                     << "\">";
-                            content << itr->path().leaf().generic_string();
+                            content << itr->path().filename().generic_string();
                             content << "</a>";
                         }
                         content << "<br>";
