@@ -2,8 +2,8 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+2.0.1 (2025-09-04)
+------------------
 * Update ROS 2 distributions for CI
 * Fix to build with current Boost libraries: (`#7 <https://github.com/fkie/async_web_server_cpp/issues/7>`_)
 * Fix warning message
