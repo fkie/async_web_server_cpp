@@ -2,6 +2,15 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Update ROS 2 distributions for CI
+* Fix to build with current Boost libraries: (`#7 <https://github.com/fkie/async_web_server_cpp/issues/7>`_)
+* Fix warning message
+* Port Windows 10 compatibility fixes to ROS 2 branch
+* Make boost::regex a private dependency
+* Contributors: Julian Francis, Piya Pimchankam, Timo Röhling
+
 2.0.0 (2021-01-14)
 ------------------
 * New ROS 2 port
