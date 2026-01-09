@@ -13,9 +13,7 @@ HttpServer::HttpServer(const std::string& address, const std::string& port,
 {
 
     boost::asio::ip::tcp::resolver resolver(io_service_);
-    boost::asio::ip::tcp::resolver::query query(
-        address, port, boost::asio::ip::resolver_query_base::flags());
-    boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve(query);
+    boost::asio::ip::tcp::endpoint endpoint = *resolver.resolve(address, port).begin();
     acceptor_.open(endpoint.protocol());
     acceptor_.set_option(boost::asio::ip::tcp::acceptor::reuse_address(true));
     acceptor_.bind(endpoint);
@@ -33,7 +31,7 @@ void HttpServer::run()
     for (std::size_t i = 0; i < thread_pool_size_; ++i)
     {
         boost::shared_ptr<boost::thread> thread(new boost::thread(
-            boost::bind(&boost::asio::io_service::run, &io_service_)));
+            boost::bind(&boost::asio::io_context::run, &io_service_)));
         threads_.push_back(thread);
     }
 }

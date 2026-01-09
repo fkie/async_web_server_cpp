@@ -40,7 +40,7 @@ public:
         ReadHandler;
     typedef std::shared_ptr<const void> ResourcePtr;
 
-    explicit HttpConnection(boost::asio::io_service& io_service,
+    explicit HttpConnection(boost::asio::io_context& io_service,
                             HttpServerRequestHandler request_handler);
 
     boost::asio::ip::tcp::socket& socket();
@@ -79,7 +79,7 @@ private:
     void handle_write(const boost::system::error_code& e,
                       std::vector<ResourcePtr> resources);
 
-    boost::asio::io_service::strand strand_;
+    boost::asio::io_context::strand strand_;
     boost::asio::ip::tcp::socket socket_;
     HttpServerRequestHandler request_handler_;
     boost::array<char, 8192> buffer_;

@@ -6,7 +6,7 @@
 namespace async_web_server_cpp
 {
 
-HttpConnection::HttpConnection(boost::asio::io_service& io_service,
+HttpConnection::HttpConnection(boost::asio::io_context& io_service,
                                HttpServerRequestHandler handler)
     : strand_(io_service), socket_(io_service), request_handler_(handler),
       write_in_progress_(false)
