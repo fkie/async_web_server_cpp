@@ -2,6 +2,11 @@
 Changelog for package async_web_server_cpp
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Fix compile errors with Boost >= 1.87 (`#8 <https://github.com/fkie/async_web_server_cpp/issues/8>`_)
+* Contributors: Michal Sojka
+
 2.0.1 (2025-09-04)
 ------------------
 * Update ROS 2 distributions for CI
