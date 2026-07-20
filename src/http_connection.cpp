@@ -8,7 +8,7 @@ namespace async_web_server_cpp
 
 HttpConnection::HttpConnection(boost::asio::io_context& io_service,
                                HttpServerRequestHandler handler)
-    : strand_(io_service), socket_(io_service), request_handler_(handler),
+    : strand_(io_service.get_executor()), socket_(io_service), request_handler_(handler),
       write_in_progress_(false)
 {
 }
@@ -77,7 +77,8 @@ void HttpConnection::async_read(ReadHandler callback)
     }
     socket_.async_read_some(
         boost::asio::buffer(buffer_),
-        strand_.wrap(
+        boost::asio::bind_executor(
+            strand_,
             boost::bind(&HttpConnection::handle_read_raw, shared_from_this(),
                         callback, boost::asio::placeholders::error,
                         boost::asio::placeholders::bytes_transferred)));

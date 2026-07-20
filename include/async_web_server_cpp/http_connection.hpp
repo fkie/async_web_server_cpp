@@ -79,7 +79,7 @@ private:
     void handle_write(const boost::system::error_code& e,
                       std::vector<ResourcePtr> resources);
 
-    boost::asio::io_context::strand strand_;
+    boost::asio::strand<boost::asio::io_context::executor_type> strand_;
     boost::asio::ip::tcp::socket socket_;
     HttpServerRequestHandler request_handler_;
     boost::array<char, 8192> buffer_;
